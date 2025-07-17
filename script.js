@@ -14,4 +14,4 @@ listItems.forEach(item => {
 
 // Lower the volume of background music
 const music = document.getElementById('bg-music');
-music.volume = 0.1; // 10% volume
+music.volume = 1; // 10% volume
