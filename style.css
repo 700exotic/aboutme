@@ -77,9 +77,7 @@ h1 {
   display: inline-block;
 }
 
-/* --- */
-
-/* Social Icons Styling */
+/* --- Social Icons Styling --- */
 .social-icons {
   margin-top: 30px; /* Space above the icons */
   display: flex;
@@ -88,14 +86,14 @@ h1 {
 }
 
 .social-icons .icon {
-  width: 45px; /* Initial size of the icons */
+  width: 45px; /* Size of the icons */
   height: 45px;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for size and opacity */
   opacity: 0.8; /* Slightly faded initially */
 }
 
 .social-icons .icon:hover {
-  transform: scale(1.1); /* Makes the icon 10% larger (approx 4.5px bigger) on hover */
+  transform: scale(1.1); /* Makes the icon 10% larger on hover */
   opacity: 1; /* Fully opaque on hover */
   cursor: pointer; /* Indicates it's clickable */
 }
