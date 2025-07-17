@@ -69,7 +69,7 @@ h1 {
 
 .info-list li:hover {
   color: #ffffff; /* Brighter white on hover */
-  transform: scale(1.05); /* Increase by 5% on hover (approx. 5px bigger for 1.2rem font) */
+  transform: scale(1.05); /* Increase by 5% on hover */
   opacity: 1; /* Fully opaque on hover */
 }
 
