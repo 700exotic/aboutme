@@ -56,26 +56,55 @@ h1 {
   font-size: 1.2rem;
   cursor: pointer;
   user-select: none;
+  margin-bottom: 20px; /* Add some space below the info list */
 }
 
 .info-list li {
   margin: 10px 0;
-  /* Apply overall hover effects to the list item */
-  transition: color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
+  position: relative;
+  min-height: 1.5em; /* Ensure enough height for text swap */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Smoother transition duration and timing function */
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(1);
   opacity: 0.8;
   color: #aaaaaa;
-  position: relative; /* Essential for containing the text spans properly */
-  min-height: 1.5em; /* Set a minimum height to avoid layout shifts when text changes length */
-  display: flex; /* Use flexbox to center content */
-  justify-content: center;
-  align-items: center;
 }
 
-/* Common styles for both default and hover text spans */
+/* NEW: Styling for the "About me" text block */
+.about-me-text-block {
+  margin: 10px auto; /* Center the block and add vertical margin */
+  padding: 0 10px; /* Add some horizontal padding */
+  font-size: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  /* min-height can be removed or set small here as it's a single line, but kept for consistency */
+  min-height: 1.5em; /* This will be the height of one line of text */
+  display: flex; /* Use flex to center content within its block */
+  justify-content: center;
+  align-items: center;
+
+  /* Apply the same smooth hover effects */
+  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+  opacity: 0.8;
+  color: #aaaaaa;
+}
+
+
+/* Common styles for default and hover text spans (applies to both .info-list and .about-me-text-block) */
 .info-list li .default-text,
-.info-list li .hover-text {
-  /* Position them to overlap exactly */
+.info-list li .hover-text,
+.about-me-text-block .default-text, /* Added for the new block */
+.about-me-text-block .hover-text { /* Added for the new block */
   position: absolute;
   top: 0;
   left: 0;
@@ -85,39 +114,45 @@ h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
-  white-space: normal; /* Allow text to wrap if it's long */
+  white-space: normal; /* Allow text to wrap naturally within its container */
   box-sizing: border-box;
 
   /* Smooth transition for opacity and visibility */
-  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Default text state */
-.info-list li .default-text {
+/* Default text state (applies to both lists and new block) */
+.info-list li .default-text,
+.about-me-text-block .default-text { /* Added for the new block */
   opacity: 1;
   visibility: visible;
 }
 
-/* Hover text state */
-.info-list li .hover-text {
+/* Hover text state (applies to both lists and new block) */
+.info-list li .hover-text,
+.about-me-text-block .hover-text { /* Added for the new block */
   opacity: 0;
-  visibility: hidden; /* Hide by default */
+  visibility: hidden;
 }
 
-/* On hover of the list item */
-.info-list li:hover {
+/* On hover of the list item or the new about me block */
+.info-list li:hover,
+.about-me-text-block:hover { /* Added for the new block */
   color: #ffffff;
   transform: scale(1.05);
   opacity: 1;
 }
 
-/* When list item is hovered, hide default text and show hover text */
-.info-list li:hover .default-text {
+/* When list item or new about me block is hovered, hide default text and show hover text */
+.info-list li:hover .default-text,
+.about-me-text-block:hover .default-text { /* Added for the new block */
   opacity: 0;
   visibility: hidden;
 }
 
-.info-list li:hover .hover-text {
+.info-list li:hover .hover-text,
+.about-me-text-block:hover .hover-text { /* Added for the new block */
   opacity: 1;
   visibility: visible;
 }
@@ -143,7 +178,8 @@ h1 {
 .social-icons .icon {
   width: 45px;
   height: 45px;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0.8;
 }
 
