@@ -17,9 +17,9 @@ body {
   min-height: 100vh;
   justify-content: center;
   text-align: center;
-  /* If the "About me" line overflows, you might want to allow horizontal scrolling */
-  /* overflow-x: auto; */
-  overflow: hidden; /* Keeping current value unless you want horizontal scroll */
+  /* MODIFIED: Allow horizontal scrolling if content overflows */
+  overflow-x: auto;
+  overflow-y: hidden; /* Prevent vertical scrolling unless content specifically demands it */
 }
 
 /* Starry background canvas */
@@ -42,7 +42,7 @@ body {
 }
 
 .container {
-  max-width: 600px; /* Text will overflow this width if nowrap is applied */
+  max-width: 600px; /* This max-width applies to the container itself */
   padding: 0 20px;
 }
 
@@ -86,7 +86,7 @@ h1 {
   cursor: pointer;
   user-select: none;
   position: relative;
-  min-height: 1.5em;
+  min-height: 1.5em; /* This height will accommodate one line of text */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,9 +102,10 @@ h1 {
 
 
 /* Common styles for default and hover text spans (applies to both .info-list and .about-me-text-block) */
+/* This rule is for default-text in both, and hover-text in info-list */
 .info-list li .default-text,
 .info-list li .hover-text,
-.about-me-text-block .default-text { /* Note: .hover-text for about-me-block is handled separately */
+.about-me-text-block .default-text {
   position: absolute;
   top: 0;
   left: 0;
@@ -114,7 +115,7 @@ h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
-  white-space: normal; /* Default behavior: allow wrapping */
+  white-space: normal; /* Allow text to wrap normally for these elements */
   box-sizing: border-box;
 
   /* Smooth transition for opacity and visibility */
@@ -122,21 +123,24 @@ h1 {
               visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Specific rule for "About me" hover text to be on one line */
+/* MODIFIED: Specific rule for "About me" hover text to be on one line */
 .about-me-text-block .hover-text {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Important for centering a non-wrapping element */
+  width: 100%; /* Important for centering the non-wrapping text within the block */
   height: 100%;
   display: flex;
-  justify-content: center; /* This will center the block containing the long text */
+  justify-content: center; /* Centers the text horizontally */
   align-items: center;
-  text-align: center; /* This will center the text itself within its line */
-  white-space: nowrap; /* FORCES THE TEXT TO BE ON ONE LINE */
+  text-align: center; /* Ensures text aligns centrally even if it overflows */
+  white-space: nowrap; /* CRITICAL: FORCES THE TEXT TO BE ON ONE LINE */
   box-sizing: border-box;
-  overflow: hidden; /* Hide any overflow within the span */
-  text-overflow: ellipsis; /* Add ellipsis if text is cut off (optional, remove if you want full overflow) */
+  /* If text overflows and you want it hidden with an ellipsis, use: */
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  /* If you want the full text to be visible (and allow body overflow-x scrollbar), remove the above two lines */
+
 
   /* Smooth transition for opacity and visibility */
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
