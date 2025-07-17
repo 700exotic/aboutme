@@ -60,24 +60,57 @@ h1 {
 
 .info-list li {
   margin: 10px 0;
-  /* Add smooth transitions for color, transform, and opacity */
+  position: relative; /* Needed for absolute positioning of spans if desired, or for context */
+  overflow: hidden; /* Ensures content doesn't "break out" during transition if needed */
+  display: flex; /* Helps align content within the li */
+  justify-content: center; /* Center the content */
+  align-items: center; /* Vertically center content */
+
+  /* Apply hover effects to the list item itself */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  transform: scale(1); /* Ensure initial scale is 1 for smooth transition */
-  opacity: 0.8; /* Slightly faded initially */
-  color: #aaaaaa; /* A slightly softer white for the default state */
+  transform: scale(1);
+  opacity: 0.8;
+  color: #aaaaaa;
 }
 
-.info-list li:hover {
-  color: #ffffff; /* Brighter white on hover */
-  transform: scale(1.05); /* Increase by 5% on hover */
-  opacity: 1; /* Fully opaque on hover */
+.info-list li .default-text,
+.info-list li .hover-text {
+  /* Common styles for both text spans */
+  position: absolute; /* Allows overlaying and smooth transition */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Ensure text is centered within its span */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade for the text itself */
 }
 
-/* Flag emoji images */
+
+.info-list li .default-text {
+  opacity: 1; /* Visible by default */
+}
+
+.info-list li .hover-text {
+  opacity: 0; /* Hidden by default */
+  pointer-events: none; /* Prevents interaction when hidden */
+}
+
+.info-list li:hover .default-text {
+  opacity: 0; /* Fade out default text on hover */
+}
+
+.info-list li:hover .hover-text {
+  opacity: 1; /* Fade in hover text on hover */
+}
+
+/* Flag emoji images - ensure they still display correctly within the spans */
 .emoji-img {
   height: 1.3em;
   width: auto;
-  vertical-align: middle;
+  vertical-align: middle; /* Keeps them aligned with text */
   margin: 0 0.2em;
   object-fit: contain;
   display: inline-block;
