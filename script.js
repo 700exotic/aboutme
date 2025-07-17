@@ -19,7 +19,7 @@ const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
 let stars = [];
-const numStars = 0; // Keeping this at 0 as per your previous script
+const numStars = 0; // Keeping this at 0 as per your original script
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
