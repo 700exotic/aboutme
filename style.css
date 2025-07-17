@@ -60,41 +60,46 @@ h1 {
 
 .info-list li {
   margin: 10px 0;
-  position: relative; /* Needed for absolute positioning of spans if desired, or for context */
-  overflow: hidden; /* Ensures content doesn't "break out" during transition if needed */
-  display: flex; /* Helps align content within the li */
-  justify-content: center; /* Center the content */
+  position: relative; /* Crucial for positioning the text spans */
+  /* Ensures the li has a defined height, preventing jumps if text lengths differ greatly */
+  min-height: 1.5em; /* Adjust this value if your "hover" text is much taller */
+  display: flex; /* Helps vertically center the content within the li */
+  justify-content: center; /* Horizontally center content */
   align-items: center; /* Vertically center content */
 
-  /* Apply hover effects to the list item itself */
+  /* Apply hover effects to the list item itself (scaling, overall opacity) */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: scale(1);
   opacity: 0.8;
   color: #aaaaaa;
 }
 
+/* Styles for the text content within each list item */
 .info-list li .default-text,
 .info-list li .hover-text {
-  /* Common styles for both text spans */
-  position: absolute; /* Allows overlaying and smooth transition */
+  position: absolute; /* Overlays the two text spans */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: flex; /* Use flex to center text within each span */
   justify-content: center;
   align-items: center;
   text-align: center; /* Ensure text is centered within its span */
   transition: opacity 0.3s ease-in-out; /* Smooth fade for the text itself */
+  /* Ensure text doesn't wrap oddly due to absolute positioning, or if it does, it's consistent */
+  white-space: normal; /* Allow text to wrap naturally if needed */
+  box-sizing: border-box; /* Include padding/border in element's total width/height */
 }
 
 
 .info-list li .default-text {
-  opacity: 1; /* Visible by default */
+  opacity: 1; /* Default text is visible initially */
+  pointer-events: auto; /* It can be interacted with (though not typically clicked) */
 }
 
 .info-list li .hover-text {
-  opacity: 0; /* Hidden by default */
+  opacity: 0; /* Hover text is hidden initially */
   pointer-events: none; /* Prevents interaction when hidden */
 }
 
@@ -110,7 +115,7 @@ h1 {
 .emoji-img {
   height: 1.3em;
   width: auto;
-  vertical-align: middle; /* Keeps them aligned with text */
+  vertical-align: middle;
   margin: 0 0.2em;
   object-fit: contain;
   display: inline-block;
