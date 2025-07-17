@@ -17,7 +17,9 @@ body {
   min-height: 100vh;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
+  /* If the "About me" line overflows, you might want to allow horizontal scrolling */
+  /* overflow-x: auto; */
+  overflow: hidden; /* Keeping current value unless you want horizontal scroll */
 }
 
 /* Starry background canvas */
@@ -40,7 +42,7 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  max-width: 600px; /* Text will overflow this width if nowrap is applied */
   padding: 0 20px;
 }
 
@@ -56,7 +58,7 @@ h1 {
   font-size: 1.2rem;
   cursor: pointer;
   user-select: none;
-  margin-bottom: 20px; /* Add some space below the info list */
+  margin-bottom: 20px;
 }
 
 .info-list li {
@@ -76,17 +78,16 @@ h1 {
   color: #aaaaaa;
 }
 
-/* NEW: Styling for the "About me" text block */
+/* Styling for the "About me" text block */
 .about-me-text-block {
-  margin: 10px auto; /* Center the block and add vertical margin */
-  padding: 0 10px; /* Add some horizontal padding */
+  margin: 10px auto;
+  padding: 0 10px;
   font-size: 1.2rem;
   cursor: pointer;
   user-select: none;
   position: relative;
-  /* min-height can be removed or set small here as it's a single line, but kept for consistency */
-  min-height: 1.5em; /* This will be the height of one line of text */
-  display: flex; /* Use flex to center content within its block */
+  min-height: 1.5em;
+  display: flex;
   justify-content: center;
   align-items: center;
 
@@ -103,8 +104,7 @@ h1 {
 /* Common styles for default and hover text spans (applies to both .info-list and .about-me-text-block) */
 .info-list li .default-text,
 .info-list li .hover-text,
-.about-me-text-block .default-text, /* Added for the new block */
-.about-me-text-block .hover-text { /* Added for the new block */
+.about-me-text-block .default-text { /* Note: .hover-text for about-me-block is handled separately */
   position: absolute;
   top: 0;
   left: 0;
@@ -114,7 +114,7 @@ h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
-  white-space: normal; /* Allow text to wrap naturally within its container */
+  white-space: normal; /* Default behavior: allow wrapping */
   box-sizing: border-box;
 
   /* Smooth transition for opacity and visibility */
@@ -122,23 +122,45 @@ h1 {
               visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Specific rule for "About me" hover text to be on one line */
+.about-me-text-block .hover-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Important for centering a non-wrapping element */
+  height: 100%;
+  display: flex;
+  justify-content: center; /* This will center the block containing the long text */
+  align-items: center;
+  text-align: center; /* This will center the text itself within its line */
+  white-space: nowrap; /* FORCES THE TEXT TO BE ON ONE LINE */
+  box-sizing: border-box;
+  overflow: hidden; /* Hide any overflow within the span */
+  text-overflow: ellipsis; /* Add ellipsis if text is cut off (optional, remove if you want full overflow) */
+
+  /* Smooth transition for opacity and visibility */
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
 /* Default text state (applies to both lists and new block) */
 .info-list li .default-text,
-.about-me-text-block .default-text { /* Added for the new block */
+.about-me-text-block .default-text {
   opacity: 1;
   visibility: visible;
 }
 
 /* Hover text state (applies to both lists and new block) */
 .info-list li .hover-text,
-.about-me-text-block .hover-text { /* Added for the new block */
+.about-me-text-block .hover-text {
   opacity: 0;
   visibility: hidden;
 }
 
 /* On hover of the list item or the new about me block */
 .info-list li:hover,
-.about-me-text-block:hover { /* Added for the new block */
+.about-me-text-block:hover {
   color: #ffffff;
   transform: scale(1.05);
   opacity: 1;
@@ -146,13 +168,13 @@ h1 {
 
 /* When list item or new about me block is hovered, hide default text and show hover text */
 .info-list li:hover .default-text,
-.about-me-text-block:hover .default-text { /* Added for the new block */
+.about-me-text-block:hover .default-text {
   opacity: 0;
   visibility: hidden;
 }
 
 .info-list li:hover .hover-text,
-.about-me-text-block:hover .hover-text { /* Added for the new block */
+.about-me-text-block:hover .hover-text {
   opacity: 1;
   visibility: visible;
 }
