@@ -29,7 +29,7 @@ music.play().catch(() => {
   window.addEventListener('mousemove', tryPlay);
 });
 
-// Shooting stars background
+// Starfield background
 const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
@@ -45,7 +45,7 @@ window.addEventListener('resize', resizeCanvas);
 
 function createStar() {
   return {
-    x: Math.random() * canvas.width,
+    x: Math.random() * (canvas.width + 100) - 50,
     y: Math.random() * canvas.height,
     size: Math.random() * 2,
     speed: Math.random() * 2 + 0.5,
@@ -71,11 +71,10 @@ function updateStars() {
     star.x -= star.speed;
     star.y += star.speed;
 
-    if (star.x < 0 || star.y > canvas.height) {
-      // Respawn above screen at random x
+    if (star.x < -50 || star.y > canvas.height + 50) {
       stars[index] = {
-        x: Math.random() * canvas.width,
-        y: -10,
+        x: Math.random() * (canvas.width + 100) - 50,
+        y: Math.random() * -50,
         size: Math.random() * 2,
         speed: Math.random() * 2 + 0.5,
       };
