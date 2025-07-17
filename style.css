@@ -61,7 +61,7 @@ h1 {
 .info-list li {
   margin: 10px 0;
   /* Apply overall hover effects to the list item */
-  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: color 0.1s ease-in-out, transform 0.1s ease-in-out, opacity 0.1s ease-in-out;
   transform: scale(1);
   opacity: 0.8;
   color: #aaaaaa;
