@@ -16,7 +16,7 @@ body {
   align-items: center;
   min-height: 100vh;
   justify-content: center;
-  text-align: center; /* Ensures top-level text and block elements are centered */
+  text-align: center;
   overflow: auto; /* Allows scrolling if content exceeds viewport */
 }
 
@@ -40,7 +40,7 @@ body {
 }
 
 .container {
-  max-width: 600px; /* Max width for the main content block */
+  max-width: 600px;
   padding: 0 20px;
 }
 
@@ -84,7 +84,7 @@ h1 {
   position: relative;
   min-height: 1.5em; /* This height will accommodate one line of text */
   display: flex;
-  justify-content: center; /* Centers the content within this block */
+  justify-content: center; /* Centers the .about-me-text-block itself */
   align-items: center;
 
   transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -116,21 +116,24 @@ h1 {
               visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* MODIFIED: Specific rule for "About me" hover text to be on one line and fully visible */
+/* MODIFIED: Specific rule for "About me" hover text to be on one line and perfectly centered */
 .about-me-text-block .hover-text {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%; /* Reverted to 100% so it takes full width of parent .about-me-text-block */
-  height: 100%;
-  display: flex;
-  justify-content: center; /* Centers the nowrap text within its 100% width parent */
-  align-items: center;
-  text-align: center; /* Ensures text aligns centrally even if it overflows its own width */
+  /* CRITICAL FOR CENTERING NON-WRAPPING TEXT: */
+  left: 50%; /* Position the start of the element at 50% of the parent's width */
+  transform: translateX(-50%); /* Shift it back by 50% of its OWN width */
+  width: max-content; /* Ensure the element's width fits its content exactly */
+
+  height: 100%; /* Maintain height for consistent hover area */
+  display: flex; /* Use flex for vertical centering within this element's height */
+  justify-content: center; /* Centers the text horizontally WITHIN THIS ELEMENT */
+  align-items: center; /* Centers vertically */
+  text-align: center; /* Fallback for text alignment */
   white-space: nowrap; /* FORCES THE TEXT TO BE ON ONE LINE */
   box-sizing: border-box;
-  overflow: visible; /* Explicitly ensures content is not clipped by this element */
-  text-overflow: clip; /* Ensures no ellipsis is added if clipped by a parent */
+  overflow: visible; /* Ensure content is not clipped by this element */
+  text-overflow: clip; /* Ensures no ellipsis is added */
 
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
