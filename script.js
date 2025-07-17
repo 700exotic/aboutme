@@ -13,7 +13,6 @@ listItems.forEach(item => {
   });
 });
 
-
 // Background music control
 const music = document.getElementById('bg-music');
 music.volume = 0.1; // 10% volume
