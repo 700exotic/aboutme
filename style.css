@@ -60,11 +60,17 @@ h1 {
 
 .info-list li {
   margin: 10px 0;
-  transition: color 0.2s ease;
+  /* Add smooth transitions for color, transform, and opacity */
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transform: scale(1); /* Ensure initial scale is 1 for smooth transition */
+  opacity: 0.8; /* Slightly faded initially */
+  color: #aaaaaa; /* A slightly softer white for the default state */
 }
 
 .info-list li:hover {
-  color: #ffffff;
+  color: #ffffff; /* Brighter white on hover */
+  transform: scale(1.05); /* Increase by 5% on hover (approx. 5px bigger for 1.2rem font) */
+  opacity: 1; /* Fully opaque on hover */
 }
 
 /* Flag emoji images */
