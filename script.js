@@ -2,15 +2,17 @@ const listItems = document.querySelectorAll('.info-list li');
 
 listItems.forEach(item => {
   const originalText = item.textContent;
+  const originalHTML = item.innerHTML;
 
   item.addEventListener('mouseenter', () => {
-    item.textContent = item.dataset.hover;
+    item.innerHTML = item.dataset.hover;
   });
 
   item.addEventListener('mouseleave', () => {
-    item.textContent = originalText;
+    item.innerHTML = originalHTML;
   });
 });
+
 
 // Background music control
 const music = document.getElementById('bg-music');
