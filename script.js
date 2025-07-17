@@ -1,17 +1,17 @@
 const listItems = document.querySelectorAll('.info-list li');
 
 listItems.forEach(item => {
-  const originalText = item.textContent;
-  const originalHTML = item.innerHTML;
+  const originalHTML = item.innerHTML;  // save original HTML, not just text
 
   item.addEventListener('mouseenter', () => {
-    item.innerHTML = item.dataset.hover;
+    item.innerHTML = item.dataset.hover; // set as HTML, so <img> renders
   });
 
   item.addEventListener('mouseleave', () => {
-    item.innerHTML = originalHTML;
+    item.innerHTML = originalHTML;       // revert to original HTML
   });
 });
+
 
 // Background music control
 const music = document.getElementById('bg-music');
