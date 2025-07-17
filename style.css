@@ -17,6 +17,18 @@ body {
   min-height: 100vh;
   justify-content: center;
   text-align: center;
+  overflow: hidden;
+}
+
+/* Starry background canvas */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
 }
 
 .discord-avatar {
@@ -29,6 +41,7 @@ body {
 
 .container {
   max-width: 600px;
+  padding: 0 20px;
 }
 
 h1 {
@@ -54,9 +67,10 @@ h1 {
   color: #ffffff;
 }
 
+/* Flag emoji images */
 .emoji-img {
-  height: 1.5em;         /* same height as text */
-  width: auto;         /* keep aspect ratio */
+  height: 1.3em;
+  width: auto;
   vertical-align: middle;
   margin: 0 0.2em;
   object-fit: contain;
