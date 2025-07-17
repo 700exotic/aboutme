@@ -55,11 +55,10 @@ h1 {
 }
 
 .emoji-img {
-  width: 20px;
-  height: 20px;
+  height: 1em;         /* same height as text */
+  width: auto;         /* keep aspect ratio */
   vertical-align: middle;
-  margin: 0 3px;
+  margin: 0 0.2em;
   object-fit: contain;
-  max-width: 20px;
-  max-height: 20px;
+  display: inline-block;
 }
