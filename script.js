@@ -34,7 +34,7 @@ const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
 let stars = [];
-const numStars = 1000;
+const numStars = 0;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
