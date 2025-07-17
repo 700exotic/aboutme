@@ -18,7 +18,6 @@ const music = document.getElementById('bg-music');
 music.volume = 0.1;
 music.muted = false;
 
-// Try to autoplay, fallback to user interaction if blocked
 music.play().catch(() => {
   function tryPlay() {
     music.play();
@@ -53,7 +52,6 @@ function createStar() {
   };
 }
 
-// Initialize stars
 for (let i = 0; i < numStars; i++) {
   stars.push(createStar());
 }
@@ -69,11 +67,18 @@ function drawStars() {
 }
 
 function updateStars() {
-  stars.forEach(star => {
+  stars.forEach((star, index) => {
     star.x -= star.speed;
     star.y += star.speed;
+
     if (star.x < 0 || star.y > canvas.height) {
-      Object.assign(star, createStar(), { x: canvas.width, y: 0 });
+      // Respawn above screen at random x
+      stars[index] = {
+        x: Math.random() * canvas.width,
+        y: -10,
+        size: Math.random() * 2,
+        speed: Math.random() * 2 + 0.5,
+      };
     }
   });
 }
