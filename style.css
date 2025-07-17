@@ -60,58 +60,69 @@ h1 {
 
 .info-list li {
   margin: 10px 0;
-  position: relative; /* Crucial for positioning the text spans */
-  /* Ensures the li has a defined height, preventing jumps if text lengths differ greatly */
-  min-height: 1.5em; /* Adjust this value if your "hover" text is much taller */
-  display: flex; /* Helps vertically center the content within the li */
-  justify-content: center; /* Horizontally center content */
-  align-items: center; /* Vertically center content */
-
-  /* Apply hover effects to the list item itself (scaling, overall opacity) */
+  /* Apply overall hover effects to the list item */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   transform: scale(1);
   opacity: 0.8;
   color: #aaaaaa;
+  position: relative; /* Essential for containing the text spans properly */
+  min-height: 1.5em; /* Set a minimum height to avoid layout shifts when text changes length */
+  display: flex; /* Use flexbox to center content */
+  justify-content: center;
+  align-items: center;
 }
 
-/* Styles for the text content within each list item */
+/* Common styles for both default and hover text spans */
 .info-list li .default-text,
 .info-list li .hover-text {
-  position: absolute; /* Overlays the two text spans */
+  /* Position them to overlap exactly */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex; /* Use flex to center text within each span */
+  display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center; /* Ensure text is centered within its span */
-  transition: opacity 0.3s ease-in-out; /* Smooth fade for the text itself */
-  /* Ensure text doesn't wrap oddly due to absolute positioning, or if it does, it's consistent */
-  white-space: normal; /* Allow text to wrap naturally if needed */
-  box-sizing: border-box; /* Include padding/border in element's total width/height */
+  text-align: center;
+  white-space: normal; /* Allow text to wrap if it's long */
+  box-sizing: border-box;
+
+  /* Smooth transition for opacity and visibility */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-
+/* Default text state */
 .info-list li .default-text {
-  opacity: 1; /* Default text is visible initially */
-  pointer-events: auto; /* It can be interacted with (though not typically clicked) */
+  opacity: 1;
+  visibility: visible;
 }
 
+/* Hover text state */
 .info-list li .hover-text {
-  opacity: 0; /* Hover text is hidden initially */
-  pointer-events: none; /* Prevents interaction when hidden */
+  opacity: 0;
+  visibility: hidden; /* Hide by default */
 }
 
+/* On hover of the list item */
+.info-list li:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* When list item is hovered, hide default text and show hover text */
 .info-list li:hover .default-text {
-  opacity: 0; /* Fade out default text on hover */
+  opacity: 0;
+  visibility: hidden;
 }
 
 .info-list li:hover .hover-text {
-  opacity: 1; /* Fade in hover text on hover */
+  opacity: 1;
+  visibility: visible;
 }
 
-/* Flag emoji images - ensure they still display correctly within the spans */
+/* Flag emoji images */
 .emoji-img {
   height: 1.3em;
   width: auto;
@@ -123,21 +134,21 @@ h1 {
 
 /* --- Social Icons Styling --- */
 .social-icons {
-  margin-top: 30px; /* Space above the icons */
+  margin-top: 30px;
   display: flex;
-  justify-content: center; /* Center the icons horizontally */
-  gap: 25px; /* Space between icons */
+  justify-content: center;
+  gap: 25px;
 }
 
 .social-icons .icon {
-  width: 45px; /* Size of the icons */
+  width: 45px;
   height: 45px;
-  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for size and opacity */
-  opacity: 0.8; /* Slightly faded initially */
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0.8;
 }
 
 .social-icons .icon:hover {
-  transform: scale(1.1); /* Makes the icon 10% larger on hover */
-  opacity: 1; /* Fully opaque on hover */
-  cursor: pointer; /* Indicates it's clickable */
+  transform: scale(1.1);
+  opacity: 1;
+  cursor: pointer;
 }
