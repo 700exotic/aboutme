@@ -55,7 +55,7 @@ h1 {
 }
 
 .emoji-img {
-  height: 1.5em;         /* same height as text */
+  height: 2em;         /* same height as text */
   width: auto;         /* keep aspect ratio */
   vertical-align: middle;
   margin: 0 0.2em;
