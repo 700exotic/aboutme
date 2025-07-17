@@ -17,8 +17,7 @@ body {
   min-height: 100vh;
   justify-content: center;
   text-align: center;
-  /* MODIFIED: Ensure scrolling for overflowing content in all directions */
-  overflow: auto; /* This allows horizontal and vertical scrollbars as needed */
+  overflow: auto; /* Allows scrolling if content exceeds viewport */
 }
 
 /* Starry background canvas */
@@ -53,15 +52,16 @@ h1 {
 .info-list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0; /* MODIFIED: Removed margin-bottom here */
   font-size: 1.2rem;
   cursor: pointer;
   user-select: none;
-  margin-bottom: 20px;
+  /* Removed margin-bottom from here. The gap will now be determined by
+     the margin-top of the .about-me-text-block. */
 }
 
 .info-list li {
-  margin: 10px 0;
+  margin: 10px 0; /* 10px top/bottom margin for list items */
   position: relative;
   min-height: 1.5em; /* Ensure enough height for text swap */
   display: flex;
@@ -78,13 +78,13 @@ h1 {
 
 /* Styling for the "About me" text block */
 .about-me-text-block {
-  margin: 10px auto;
+  margin: 10px auto; /* This sets 10px top/bottom margin for the about me block */
   padding: 0 10px;
   font-size: 1.2rem;
   cursor: pointer;
   user-select: none;
   position: relative;
-  min-height: 1.5em; /* This height will accommodate one line of text */
+  min-height: 1.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,30 +111,28 @@ h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
-  white-space: normal; /* Allows text to wrap normally for these elements */
+  white-space: normal;
   box-sizing: border-box;
 
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* MODIFIED: Specific rule for "About me" hover text to be on one line AND FULLY VISIBLE */
+/* Specific rule for "About me" hover text to be on one line and fully visible */
 .about-me-text-block .hover-text {
   position: absolute;
   top: 0;
   left: 0;
-  /* CRITICAL: Allows the width to adapt to the full content length without wrapping */
   width: max-content;
   height: 100%;
   display: flex;
-  justify-content: center; /* Centers the text horizontally within the 'about-me-text-block' */
+  justify-content: center;
   align-items: center;
-  text-align: center; /* Ensures text aligns centrally */
-  white-space: nowrap; /* FORCES THE TEXT TO BE ON ONE LINE */
+  text-align: center;
+  white-space: nowrap;
   box-sizing: border-box;
-  /* CRITICAL: Explicitly ensures content is not clipped by this element or its parents */
-  overflow: visible; /* Prevents clipping by this element */
-  text-overflow: clip; /* Ensures no ellipsis is added if clipped by a parent */
+  overflow: visible;
+  text-overflow: clip;
 
   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
