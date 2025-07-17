@@ -14,7 +14,8 @@ listItems.forEach(item => {
 
 // Background music control
 const music = document.getElementById('bg-music');
-music.volume = 0.1; // 10% volume
+music.volume = 0; // start volume at 0 for fade-in
+music.muted = true; // start muted to allow autoplay
 
 // Flag to track if music is unmuted
 let musicStarted = false;
