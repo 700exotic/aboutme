@@ -1,18 +1,3 @@
-// Hover effect with HTML support
-const listItems = document.querySelectorAll('.info-list li');
-
-listItems.forEach(item => {
-  const originalHTML = item.innerHTML;
-
-  item.addEventListener('mouseenter', () => {
-    item.innerHTML = item.dataset.hover;
-  });
-
-  item.addEventListener('mouseleave', () => {
-    item.innerHTML = originalHTML;
-  });
-});
-
 // Background music control
 const music = document.getElementById('bg-music');
 music.volume = 0.1;
@@ -34,7 +19,7 @@ const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
 let stars = [];
-const numStars = 0;
+const numStars = 0; // Keeping this at 0 as per your previous script
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
