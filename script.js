@@ -14,33 +14,15 @@ listItems.forEach(item => {
 
 // Background music control
 const music = document.getElementById('bg-music');
-music.volume = 0; // start volume at 0 for fade-in
-music.muted = true; // start muted to allow autoplay
-
-// Flag to track if music is unmuted
-let musicStarted = false;
-
-function unmuteAndFadeIn() {
-  if (musicStarted) return;
-  musicStarted = true;
-
-  music.muted = false;
-  music.play();
-
-  let vol = 0;
-  const targetVol = 0.1;
-  const fadeStep = 0.01;
-
-  const fadeInInterval = setInterval(() => {
-    if (vol < targetVol) {
-      vol += fadeStep;
-      music.volume = Math.min(vol, targetVol);
-    } else {
-      clearInterval(fadeInInterval);
-    }
-  }, 100);
-}
-
-// Listen for user interaction to unmute and fade in music
-window.addEventListener('click', unmuteAndFadeIn, { once: true });
-window.addEventListener('mousemove', unmuteAndFadeIn, { once: true });
+music.volume = 0.1; // 10% volume
+music.muted = false; // Unmute for autoplay (browser may block autoplay sound, user interaction might be needed)
+music.play().catch(() => {
+  // Autoplay might fail, wait for user interaction to play
+  function playOnInteraction() {
+    music.play();
+    window.removeEventListener('click', playOnInteraction);
+    window.removeEventListener('mousemove', playOnInteraction);
+  }
+  window.addEventListener('click', playOnInteraction);
+  window.addEventListener('mousemove', playOnInteraction);
+});
