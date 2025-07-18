@@ -208,9 +208,12 @@ h1 {
 
 /* New styles for the Lanyard banner container */
 .lanyard-banner-container {
-    margin: 10px auto; /* Consistent spacing */
+    margin-top: 10px;    /* Keep top margin */
+    margin-bottom: 10px; /* Keep bottom margin */
+    margin-left: auto;   /* Pushes the container to the right */
+    margin-right: 0;     /* Ensures no right margin pushes it back */
     display: flex;
-    justify-content: center; /* Center the banner horizontally */
+    justify-content: center; /* Still centers the content *within* the banner if it has extra space */
     opacity: 0.8;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
