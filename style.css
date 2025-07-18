@@ -13,7 +13,7 @@ body {
   font-family: 'Roboto Slab', serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; /* This centers items horizontally in a column layout */
   min-height: 100vh;
   justify-content: center;
   text-align: center;
@@ -37,6 +37,8 @@ body {
   border-radius: 50%;
   margin-bottom: 20px;
   display: block;
+  margin-left: auto; /* Explicitly center the avatar */
+  margin-right: auto; /* Explicitly center the avatar */
 }
 
 .container {
@@ -210,8 +212,9 @@ h1 {
 .lanyard-banner-container {
     margin-top: 10px;    /* Keep top margin */
     margin-bottom: 10px; /* Keep bottom margin */
-    margin-left: auto;   /* Pushes the container to the right */
-    margin-right: 0;     /* Ensures no right margin pushes it back */
+    /* Changed from margin-left: auto; margin-right: 0; */
+    margin-left: 100px;  /* Move 100px to the right from its natural centered position */
+    margin-right: auto;  /* Allow auto margin on the right to keep it consistent */
     display: flex;
     justify-content: center; /* Still centers the content *within* the banner if it has extra space */
     opacity: 0.8;
