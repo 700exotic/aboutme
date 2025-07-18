@@ -75,40 +75,5 @@ function animate() {
 
 animate();
 
-
-// Spotify Status Logic
-const spotifyDisplayText = document.getElementById('spotify-display-text');
-const discordUserId = '973060391460544513'; // Your Discord User ID
-
-async function updateSpotifyStatus() {
-    // This check ensures we have an ID before trying to fetch
-    if (!discordUserId || discordUserId === 'YOUR_DISCORD_USER_ID') {
-        spotifyDisplayText.textContent = 'Spotify Status: Discord User ID is not set or invalid.';
-        return;
-    }
-
-    try {
-        const response = await fetch(`https://api.lanyard.cnrad.dev/v1/users/${discordUserId}`);
-        const data = await response.json();
-
-        // Check if Lanyard fetch was successful and contains Spotify data
-        if (data.success && data.data.spotify) {
-            const spotify = data.data.spotify;
-            spotifyDisplayText.innerHTML = `Spotify: Listening to "${spotify.song}" by ${spotify.artist}`;
-            // Optional: You can make the song title a clickable link to Spotify
-            // spotifyDisplayText.innerHTML = `Spotify: Listening to "<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" style="color: white; text-decoration: underline;">${spotify.song}</a>" by ${spotify.artist}`;
-        } else {
-            // If fetch was successful but no Spotify data (e.g., not listening)
-            spotifyDisplayText.textContent = 'Spotify Status: Not listening.';
-        }
-    } catch (error) {
-        // If there was a network error or Lanyard is unreachable
-        console.error('Error fetching Spotify status:', error);
-        spotifyDisplayText.textContent = 'Spotify Status: Error fetching status.';
-    }
-}
-
-// Initial update when the page loads
-updateSpotifyStatus();
-// Update status every 10 seconds
-setInterval(updateSpotifyStatus, 10000);
+// --- NO SPOTIFY STATUS LOGIC NEEDED IN JAVASCRIPT ---
+// You are now using Lanyard's pre-rendered banner directly in HTML.
