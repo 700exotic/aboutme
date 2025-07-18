@@ -208,15 +208,12 @@ h1 {
   cursor: pointer;
 }
 
-/* New styles for the Lanyard banner container */
+/* Styles for the Lanyard banner container */
 .lanyard-banner-container {
-    margin-top: 10px;    /* Keep top margin */
-    margin-bottom: 10px; /* Keep bottom margin */
-    /* Changed from margin-left: auto; margin-right: 0; */
-    margin-left: 100px;  /* Move 100px to the right from its natural centered position */
-    margin-right: auto;  /* Allow auto margin on the right to keep it consistent */
+    /* Reverted to original centering */
+    margin: 10px auto; /* This centers the container horizontally */
     display: flex;
-    justify-content: center; /* Still centers the content *within* the banner if it has extra space */
+    justify-content: center; /* Still centers the content *within* the banner */
     opacity: 0.8;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
