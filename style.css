@@ -206,7 +206,7 @@ h1 {
   cursor: pointer;
 }
 
-/* NEW: Spotify Status Block Styles */
+/* Spotify Status Block Styles */
 .spotify-status-block {
   margin: 10px auto; /* Consistent spacing with other items */
   padding: 0 10px;
