@@ -19,7 +19,7 @@ const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
 let stars = [];
-const numStars = 0; // Keeping this at 0 as per your original script
+const numStars = 0;
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -74,3 +74,38 @@ function animate() {
 }
 
 animate();
+
+
+// NEW: Spotify Status Logic
+const spotifyDisplayText = document.getElementById('spotify-display-text');
+const discordUserId = '973060391460544513'; // <<< PASTE YOUR DISCORD USER ID HERE
+
+async function updateSpotifyStatus() {
+    // Only attempt to fetch if the user ID is set
+    if (!discordUserId || discordUserId === '973060391460544513') {
+        spotifyDisplayText.textContent = 'Spotify Status: Please set your Discord User ID in script.js.';
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://api.lanyard.cnrad.dev/v1/users/${discordUserId}`);
+        const data = await response.json();
+
+        if (data.success && data.data.spotify) {
+            const spotify = data.data.spotify;
+            spotifyDisplayText.innerHTML = `Spotify: Listening to "${spotify.song}" by ${spotify.artist}`;
+            // Optional: You can make the song title a clickable link to Spotify
+            // spotifyDisplayText.innerHTML = `Spotify: Listening to "<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" style="color: white; text-decoration: underline;">${spotify.song}</a>" by ${spotify.artist}`;
+        } else {
+            spotifyDisplayText.textContent = 'Spotify Status: Not listening.';
+        }
+    } catch (error) {
+        console.error('Error fetching Spotify status:', error);
+        spotifyDisplayText.textContent = 'Spotify Status: Error fetching status.';
+    }
+}
+
+// Initial update when the page loads
+updateSpotifyStatus();
+// Update status every 10 seconds
+setInterval(updateSpotifyStatus, 10000);
