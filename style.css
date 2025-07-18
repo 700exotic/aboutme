@@ -206,43 +206,23 @@ h1 {
   cursor: pointer;
 }
 
-/* Spotify Status Block Styles */
-.spotify-status-block {
-  margin: 10px auto; /* Consistent spacing with other items */
-  padding: 0 10px;
-  font-size: 1.2rem;
-  user-select: none;
-  position: relative;
-  min-height: 1.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center; /* Ensures the text within the block is centered */
-  white-space: nowrap; /* Keep the Spotify status on one line */
-  box-sizing: border-box;
-  overflow: visible; /* Ensure content is not clipped by this element */
-  text-overflow: clip; /* Ensures no ellipsis is added if clipped by a parent */
-
-  /* Apply same hover effects as other blocks */
-  transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(1);
-  opacity: 0.8;
-  color: #aaaaaa; /* Default text color */
+/* New styles for the Lanyard banner container */
+.lanyard-banner-container {
+    margin: 10px auto; /* Consistent spacing */
+    display: flex;
+    justify-content: center; /* Center the banner horizontally */
+    opacity: 0.8;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.spotify-status-block:hover {
-  color: #ffffff;
-  transform: scale(1.05);
-  opacity: 1;
+.lanyard-banner-container:hover {
+    opacity: 1;
+    transform: scale(1.05);
 }
 
-/* Optional: Style for the link if you enable it in script.js */
-.spotify-status-block a {
-    color: white;
-    text-decoration: underline;
-}
-.spotify-status-block a:hover {
-    color: #1DB954; /* Spotify green */
+.lanyard-banner-img {
+    max-width: 100%; /* Ensure it's responsive */
+    height: auto;
+    display: block; /* Remove extra space below image */
+    border-radius: 8px; /* Optional: adds rounded corners to the banner */
 }
