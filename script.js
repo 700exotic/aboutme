@@ -19,7 +19,7 @@ const canvas = document.getElementById('stars');
 const ctx = canvas.getContext('2d');
 
 let stars = [];
-const numStars = 0;
+const numStars = 0; // Set to 0 as per previous discussion if you don't want stars
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -76,17 +76,14 @@ function animate() {
 animate();
 
 
-// NEW: Spotify Status Logic
+// Spotify Status Logic
 const spotifyDisplayText = document.getElementById('spotify-display-text');
-// Your Discord User ID is now directly hardcoded here
-const discordUserId = '973060391460544513';
+const discordUserId = '973060391460544513'; // Your Discord User ID
 
 async function updateSpotifyStatus() {
-    // The condition below is now simplified as the ID is directly set
-    // This 'if' block will now only trigger if discordUserId is empty for some reason,
-    // which it shouldn't be if you've pasted the code correctly.
-    if (!discordUserId) {
-        spotifyDisplayText.textContent = 'Spotify Status: Discord User ID is not set.';
+    // This check ensures we have an ID before trying to fetch
+    if (!discordUserId || discordUserId === 'YOUR_DISCORD_USER_ID') {
+        spotifyDisplayText.textContent = 'Spotify Status: Discord User ID is not set or invalid.';
         return;
     }
 
@@ -94,15 +91,18 @@ async function updateSpotifyStatus() {
         const response = await fetch(`https://api.lanyard.cnrad.dev/v1/users/${discordUserId}`);
         const data = await response.json();
 
+        // Check if Lanyard fetch was successful and contains Spotify data
         if (data.success && data.data.spotify) {
             const spotify = data.data.spotify;
             spotifyDisplayText.innerHTML = `Spotify: Listening to "${spotify.song}" by ${spotify.artist}`;
             // Optional: You can make the song title a clickable link to Spotify
             // spotifyDisplayText.innerHTML = `Spotify: Listening to "<a href="https://open.spotify.com/track/${spotify.track_id}" target="_blank" style="color: white; text-decoration: underline;">${spotify.song}</a>" by ${spotify.artist}`;
         } else {
+            // If fetch was successful but no Spotify data (e.g., not listening)
             spotifyDisplayText.textContent = 'Spotify Status: Not listening.';
         }
     } catch (error) {
+        // If there was a network error or Lanyard is unreachable
         console.error('Error fetching Spotify status:', error);
         spotifyDisplayText.textContent = 'Spotify Status: Error fetching status.';
     }
