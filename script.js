@@ -78,12 +78,15 @@ animate();
 
 // NEW: Spotify Status Logic
 const spotifyDisplayText = document.getElementById('spotify-display-text');
-const discordUserId = '973060391460544513'; // <<< PASTE YOUR DISCORD USER ID HERE
+// Your Discord User ID is now directly hardcoded here
+const discordUserId = '973060391460544513';
 
 async function updateSpotifyStatus() {
-    // Only attempt to fetch if the user ID is set
-    if (!discordUserId || discordUserId === '973060391460544513') {
-        spotifyDisplayText.textContent = 'Spotify Status: Please set your Discord User ID in script.js.';
+    // The condition below is now simplified as the ID is directly set
+    // This 'if' block will now only trigger if discordUserId is empty for some reason,
+    // which it shouldn't be if you've pasted the code correctly.
+    if (!discordUserId) {
+        spotifyDisplayText.textContent = 'Spotify Status: Discord User ID is not set.';
         return;
     }
 
